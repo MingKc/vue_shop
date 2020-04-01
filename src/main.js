@@ -8,9 +8,21 @@ import './assets/css/global.css'
 
 // 导入axios
 import axios from 'axios'
-// 在Vue原型挂载axios，并配置根路径
+// 配置根路径
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
-Vue.prototype.$axios = axios
+
+// axios请求拦截器
+axios.interceptors.request.use(function (config) {
+  config.headers.Authorization = window.sessionStorage.getItem('token')
+  return config
+})
+// axios响应拦截器
+axios.interceptors.response.use(function (result) {
+  return result.data
+})
+
+// 在Vue原型挂载axios，
+Vue.prototype.axios = axios
 
 Vue.config.productionTip = false
 
