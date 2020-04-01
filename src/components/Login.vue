@@ -61,7 +61,7 @@ export default {
         // 验证通过，提交表单
         if (validate) {
           // post请求
-          const { data: result } = await this.$axios.post('login', this.loginForm)
+          const result = await this.axios.post('login', this.loginForm)
           if (result.meta.status === 200) {
             this.$message.success('登录成功！')
             // 保存token到Session Storage
