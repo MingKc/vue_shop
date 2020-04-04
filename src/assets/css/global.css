@@ -24,3 +24,8 @@ body .el-table th.gutter{
 .el-pagination{
     margin-top:15px;
 }
+
+/*级联选择器高度*/
+.el-cascader-menu {
+    height: 250px;
+}
