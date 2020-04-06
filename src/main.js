@@ -6,6 +6,12 @@ import './plugins/element.js'
 // 导入全局样式表
 import './assets/css/global.css'
 import TreeTable from 'vue-table-with-tree-grid'
+// 导入富文本编辑器
+import VueQuillEditor from 'vue-quill-editor'
+// 导入富文本编辑器对应样式
+import 'quill/dist/quill.core.css' // import styles
+import 'quill/dist/quill.snow.css' // for snow theme
+import 'quill/dist/quill.bubble.css' // for bubble theme
 
 // 导入axios
 import axios from 'axios'
@@ -26,6 +32,21 @@ axios.interceptors.response.use(function (result) {
 Vue.prototype.axios = axios
 
 Vue.component('tree-table', TreeTable)
+// 将富文本编辑器注册成全局可用组件
+Vue.use(VueQuillEditor)
+
+// 格式化时间
+Vue.filter('dateFormat', function (time) {
+    const date = new Date(time)
+    const yyyy = date.getFullYear()
+    // getMonth()为0-11 ，padStart(2, '0')字符串总长2位，不足用'0'补齐
+    const m = (date.getMonth() + 1 + '').padStart(2, '0')
+    const dd = (date.getDate() + '').padStart(2, '0')
+    const hh = (date.getHours() + '').padStart(2, '0')
+    const mm = (date.getMinutes() + '').padStart(2, '0')
+    const ss = (date.getSeconds() + '').padStart(2, '0')
+    return `${yyyy}-${m}-${dd} ${hh}:${mm}:${ss}`
+})
 
 Vue.config.productionTip = false
 

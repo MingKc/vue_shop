@@ -29,3 +29,18 @@ body .el-table th.gutter{
 .el-cascader-menu {
     height: 250px;
 }
+
+/*步骤条*/
+.el-steps{
+    margin: 15px 0;
+}
+
+/*步骤条字体大小*/
+.el-step__title{
+    font-size: 13px;
+}
+
+/*富文本编辑器*/
+.ql-editor{
+    min-height: 300px;
+}
